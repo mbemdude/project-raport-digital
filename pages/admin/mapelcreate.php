@@ -4,27 +4,23 @@ if (isset($_POST['button_create'])) {
     $database = new Database();
     $db = $database->getConnection();
 
-    $insertSql = "INSERT INTO jabatan (nama_jabatan, gapok_jabatan, tunjangan_jabatan, uang_makan_perhari) VALUES (?, ?, ?, ?)";
+    $insertSql = "INSERT INTO tb_mapel (kd_mapel, mapel) VALUES (?, ?)";
     $stmt = $db->prepare($insertSql);
-    $stmt->bindParam(1, $_POST['nama_jabatan']);
-    $stmt->bindParam(2, $_POST['gapok_jabatan']);
-    $stmt->bindParam(3, $_POST['tunjangan_jabatan']);
-    $stmt->bindParam(4, $_POST['uang_makan_perhari']);
+    $stmt->bindParam(1, $_POST['kd_mapel']);
+    $stmt->bindParam(2, $_POST['mapel']);
     if ($stmt->rowCount() > 0) {
 ?>
     <div class="alert alert-danger alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
         <h5><i class="icon fa fa-ban"></i> Gagal</h5>
-        Nama jabatan sudah ada
+        Nama mapel sudah ada
     </div>
 <?php
     } else {
-        $insertSql = "INSERT INTO jabatan (nama_jabatan, gapok_jabatan, tunjangan_jabatan, uang_makan_perhari) VALUE (?, ?, ?, ?)";
+        $insertSql = "INSERT INTO tb_mapel (kd_mapel, mapel) VALUE (?, ?)";
         $stmt = $db->prepare($insertSql);
-        $stmt->bindParam(1, $_POST['nama_jabatan']);
-        $stmt->bindParam(2, $_POST['gapok_jabatan']);
-        $stmt->bindParam(3, $_POST['tunjangan_jabatan']);
-        $stmt->bindParam(4, $_POST['uang_makan_perhari']);
+        $stmt->bindParam(1, $_POST['kd_mapel']);
+        $stmt->bindParam(2, $_POST['mapel']);
         if ($stmt->execute()) {
             $_SESSION['hasil'] = true;
             $_SESSION['pesan'] = "Berhasil simpan data";
@@ -32,7 +28,7 @@ if (isset($_POST['button_create'])) {
             $_SESSION['hasil'] = false;
             $_SESSION['pesan'] = "Gagal simpan data";
         }
-        echo "<meta http-equiv='refresh' content='0;url=?page=jabatanread'>";
+        echo "<meta http-equiv='refresh' content='0;url=?page=mapelread'>";
     }
 }
 
@@ -42,12 +38,12 @@ if (isset($_POST['button_create'])) {
     <div class="container-fluid">
         <div class="row mb2">
             <div class="col-sm-6">
-                <h1>Tambah Data Jabatan</h1>
+                <h1>Tambah Data Mata Pelajaran</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="?page=home">Home</a></li>
-                    <li class="breadcrumb-item"><a href="?page=jabatanread">Jabatan</a></li>
+                    <li class="breadcrumb-item"><a href="?page=mapelread">mapel</a></li>
                     <li class="breadcrumb-item active">Tambah Data</li>
                 </ol>
             </div>
@@ -58,21 +54,17 @@ if (isset($_POST['button_create'])) {
 <section class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Tambah Jabatan</h3>
+            <h3 class="card-title">Tambah Mata Pelajaran</h3>
         </div>
         <div class="card-body">
             <form method="POST">
                 <div class="form-group">
-                    <label for="nama_jabatan">Nama Jabatan</label>
-                    <input type="text" class="form-control" name="nama_jabatan">
-                    <label for="gapok_jabatan">Gapok Jabatan</label>
-                    <input type="number" class="form-control" name="gapok_jabatan">
-                    <label for="tunjangan_jabatan">Tunjangan Jabatan</label>
-                    <input type="number" class="form-control" name="tunjangan_jabatan">
-                    <label for="uang_makan_perhari">Uang Makan Perhari</label>
-                    <input type="number" class="form-control" name="uang_makan_perhari">
+                    <label for="kd_mapel">Kode Mapel</label>
+                    <input type="text" class="form-control" name="kd_mapel">
+                    <label for="mapel">Mata Pelajaran</label>
+                    <input type="text" class="form-control" name="mapel">
                 </div>
-                <a href="?page=jabatanread" class="btn btn-danger btn-sm float-right">
+                <a href="?page=mapelread" class="btn btn-danger btn-sm float-right">
                     <i class="fa fa-times"></i> Batal
                 </a>
                 <button type="submit" name="button_create" class="btn btn-success btn-sm float-right mr-2">

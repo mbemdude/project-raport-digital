@@ -46,17 +46,17 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="?page=jabatanread" class="nav-link">
+                <a href="?page=gururead" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Jabatan</p>
+                  <p>
+                    Guru
+                  </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="?page=mapelread" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Bagian
-                  </p>
+                  <p>Mata Pelajaran</p>
                 </a>
               </li>
               <li class="nav-item">

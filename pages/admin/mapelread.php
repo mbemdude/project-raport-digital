@@ -1,12 +1,15 @@
-<?php include_once 'partials/cssdatatables.php' ?>
+
 <div class="content-header">
     <div class="container-fluid">
         <?php 
         if (isset($_SESSION["hasil"])) {
             if ($_SESSION["hasil"]) {
         ?>
-                <div class="alert alert-success alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="close"></button>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <!-- <button type="button" class="close" data-dismiss="alert" aria-label="close"></button> -->
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                     <h5><i class="icon fa fa-check"></i> Berhasil</h5>
                     <?php echo $_SESSION['pesan']?>
                 </div>
@@ -27,14 +30,14 @@
         ?>
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Lokasi</h1>
+                <h1 class="m-0">Data Mapel</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item">
                         <a href="?page=home"> Home</a>
                     </li>
-                    <li class="breadcrumb-item">Lokasi</li>
+                    <li class="breadcrumb-item">Data Mata Pelajaran</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -44,8 +47,8 @@
 <div class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Data Lokasi</h3>
-            <a href="?page=jabatancreate" class="btn btn-success btn-sm float-right">
+            <h3 class="card-title">Data Mata Pelajaran</h3>
+            <a href="?page=mapelcreate" class="btn btn-success btn-sm float-right">
             <i class="fa fa-plus-circle"></i> Tambah Data</a>
         </div>
         <div class="card-body">
@@ -53,20 +56,16 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Jabatan</th>
-                        <th>Gapok</th>
-                        <th>Tunjangan</th>
-                        <th>Uang Makan</th>
+                        <th>Kode Mapel</th>
+                        <th>Mata Pelajaran</th>
                         <th>Opsi</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>No</th>
-                        <th>Nama Jabatan</th>
-                        <th>Gapok</th>
-                        <th>Tunjangan</th>
-                        <th>Uang Makan</th>
+                        <th>Kode Mapel</th>
+                        <th>Mata Pelajaran</th>
                         <th>Opsi</th>
                     </tr>
                 </tfoot>
@@ -75,7 +74,7 @@
                     $database = new Database();
                     $db = $database->getConnection();
 
-                    $selectSql = "SELECT * FROM jabatan";
+                    $selectSql = "SELECT * FROM tb_mapel";
 
                     $stmt = $db->prepare($selectSql);
                     $stmt->execute();
@@ -85,15 +84,13 @@
                     ?>
                     <tr>
                         <td><?php echo $no++ ?></td>
-                        <td><?php echo $row['nama_jabatan'] ?></td>
-                        <td><?php echo $row['gapok_jabatan'] ?></td>
-                        <td><?php echo $row['tunjangan_jabatan'] ?></td>
-                        <td><?php echo $row['uang_makan_perhari'] ?></td>
+                        <td><?php echo $row['kd_mapel'] ?></td>
+                        <td><?php echo $row['mapel'] ?></td>
                         <td>
-                            <a href="?page=lokasiupdate&id=<?php echo $row['id']?>" class="btn btn-primary btn-sm">
+                            <a href="?page=mapelupdate&id=<?php echo $row['id']?>" class="btn btn-primary btn-sm">
                             <i class="fa fa-edit"> Ubah</i>
                             </a>
-                            <a href="?page=jabatandelete&id=<?php echo $row['id']?>" class="btn btn-danger btn-sm">
+                            <a href="?page=mapeldelete&id=<?php echo $row['id']?>" class="btn btn-danger btn-sm">
                             <i class="fa fa-trash"> Hapus</i>
                             </a>
                         </td>
@@ -104,8 +101,8 @@
         </div>
     </div>
 </div>
-<?php include_once 'partials/scripts.php' ?>
-<?php include_once 'partials/scriptsdatatables.php' ?>
+<?php include 'partials/scripts.php' ?>
+<?php include 'partials/scriptsdatatables.php' ?>
 <script>
 $(function() {
     $('#myTable').DataTable()

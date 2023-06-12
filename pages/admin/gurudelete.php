@@ -5,16 +5,16 @@ if (isset($_GET['id'])) {
     $database = new Database();
     $db = $database->getConnection();
 
-    $deleteSql = "DELETE FROM jabatan WHERE id = ?";
+    $deleteSql = "DELETE FROM tb_guru WHERE id = ?";
     $stmt = $db->prepare($deleteSql);
     $stmt->bindParam(1, $_GET['id']);
     if($stmt->execute()) {
         $_SESSION['hasil'] = true;
-        $_SESSION['pesan'] = "Jabatan berhasil dihapus";
+        $_SESSION['pesan'] = "Guru berhasil dihapus";
     } else {
-        $_SESSION['haisl'] = false;
-        $_SESSION['pesan'] = "Jabatan gagal dihapus";
+        $_SESSION['hasil'] = false;
+        $_SESSION['pesan'] = "Guru gagal dihapus";
     }
 }
-echo "<meta http-equiv='refresh' content='0;url=?page=jabatanread'>";
+echo "<meta http-equiv='refresh' content='0;url=?page=gururead'>";
 ?>

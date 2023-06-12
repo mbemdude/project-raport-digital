@@ -18,17 +18,29 @@ if (isset($_GET['page'])) {
         case 'santridelete':
             file_exists('pages/admin/santridelete.php') ? include 'pages/admin/santridelete.php' : include "pages/404.php";
             break;
-        case 'jabatanread':
-            file_exists('pages/admin/jabatanread.php') ? include 'pages/admin/jabatanread.php' : include "pages/404.php";
+        case 'gururead':
+            file_exists('pages/admin/gururead.php') ? include 'pages/admin/gururead.php' : include "pages/404.php";
             break;
-        case 'jabatancreate':
-            file_exists('pages/admin/jabatancreate.php') ? include 'pages/admin/jabatancreate.php' : include "pages/404.php";
+        case 'gurucreate':
+            file_exists('pages/admin/gurucreate.php') ? include 'pages/admin/gurucreate.php' : include "pages/404.php";
             break;
-        case 'jabatanupdate':
-            file_exists('pages/admin/jabatanupdate.php') ? include 'pages/admin/jabatanupdate.php' : include "pages/404.php";
+        case 'guruupdate':
+            file_exists('pages/admin/guruupdate.php') ? include 'pages/admin/guruupdate.php' : include "pages/404.php";
             break;
-        case 'jabatandelete':
-            file_exists('pages/admin/jabatandelete.php') ? include 'pages/admin/jabatandelete.php' : include "pages/404.php";
+        case 'gurudelete':
+            file_exists('pages/admin/gurudelete.php') ? include 'pages/admin/gurudelete.php' : include "pages/404.php";
+            break;
+        case 'mapelread':
+            file_exists('pages/admin/mapelread.php') ? include 'pages/admin/mapelread.php' : include "pages/404.php";
+            break;
+        case 'mapelcreate':
+            file_exists('pages/admin/mapelcreate.php') ? include 'pages/admin/mapelcreate.php' : include "pages/404.php";
+            break;
+        case 'mapelupdate':
+            file_exists('pages/admin/mapelupdate.php') ? include 'pages/admin/mapelupdate.php' : include "pages/404.php";
+            break;
+        case 'mapeldelete':
+            file_exists('pages/admin/mapeldelete.php') ? include 'pages/admin/mapeldelete.php' : include "pages/404.php";
             break;
         default:
             include 'pages/404.php';
