@@ -30,13 +30,13 @@ if (isset($_GET['id'])) {
                 </div>
         <?php 
             } else {
-                $updateSql = "UPDATE tb_santri SET nis = ?, nisn = ?, nama_santri = ?, kelas_id = ? WHERE id = ?";
+                $updateSql = "UPDATE tb_santri SET nis = ?, nisn = ?, nama_santri = ? WHERE id = ?";
                 $stmt = $db->prepare($updateSql);
                 $stmt->bindParam(1, $_POST['nis']);
                 $stmt->bindParam(2, $_POST['nisn']);
                 $stmt->bindParam(3, $_POST['nama_santri']);
-                $stmt->bindParam(4, $_POST['kelas_id']);
-                $stmt->bindParam(5, $_POST['id']);
+                // $stmt->bindParam(4, $_POST['kelas_id']);
+                $stmt->bindParam(4, $_POST['id']);
                 if ($stmt->execute()) {
                     $_SESSION['hasil'] = true;
                     $_SESSION['pesan'] = "Berhasil ubah data";
@@ -81,7 +81,7 @@ if (isset($_GET['id'])) {
                     <input type="text" class="form-control" name="nisn" value="<?php echo $row['nisn'] ?>">
                     <label for="nama_santri">Nama Santri</label>
                     <input type="text" class="form-control" name="nama_santri" value="<?php echo $row['nama_santri'] ?>">
-                    <label for="kelas_id">Kelas</label>
+                    <!-- <label for="kelas_id">Kelas</label>
                     <select name="kelas_id" id="" class="form-control">
                         <option value="">>-- Kelas --<</option>
                         <?php 
@@ -96,7 +96,7 @@ if (isset($_GET['id'])) {
                             echo "<option value=\"" . $row_santri['Kelas_id'] .   "\">" . $row_santri['kelas'] . "</option>";
                         } 
                         ?>
-                    </select>
+                    </select> -->
                 </div>
                 <a href="?page=santriread" class="btn btn-danger btn-sm float-right">
                     <i class="fa fa-times"></i> Batal
