@@ -5,16 +5,16 @@ if (isset($_GET['id'])) {
     $database = new Database();
     $db = $database->getConnection();
 
-    $deleteSql = "DELETE FROM tb_lokasi WHERE id = ?";
+    $deleteSql = "DELETE FROM tb_santri WHERE id = ?";
     $stmt = $db->prepare($deleteSql);
     $stmt->bindParam(1, $_GET['id']);
     if($stmt->execute()) {
         $_SESSION['hasil'] = true;
-        $_SESSION['pesan'] = "Lokasi berhasil dihapus";
+        $_SESSION['pesan'] = "santri berhasil dihapus";
     } else {
-        $_SESSION['haisl'] = false;
-        $_SESSION['pesan'] = "Lokasi gagal dihapus";
+        $_SESSION['hasil'] = false;
+        $_SESSION['pesan'] = "santri gagal dihapus";
     }
 }
-echo "<meta http-equiv='refresh' content='0;url=?page=lokasiread'>";
+echo "<meta http-equiv='refresh' content='0;url=?page=santriread'>";
 ?>

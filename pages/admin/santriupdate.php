@@ -88,7 +88,7 @@ if (isset($_GET['id'])) {
                         $database = new Database();
                         $db = $database->getConnection();
     
-                        $selectSql = "SELECT tb_kelas.id, tb_kelas.kelas, tb_santri.kelas_id FROM tb_kelas INNER JOIN tb_santri ON tb_kelas.id = tb_santri.kelas_id";
+                        $selectSql = "SELECT * FROM tb_kelas";
                         $stmt_santri = $db->prepare($selectSql);
                         $stmt_santri->execute();
                                                                                                    
