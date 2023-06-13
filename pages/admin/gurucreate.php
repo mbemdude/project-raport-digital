@@ -92,5 +92,3 @@ if (isset($_POST['button_create'])) {
         </div>
     </div>
 </section>
-
-<!-- <?php include_once 'partials_script.php' ?> -->
