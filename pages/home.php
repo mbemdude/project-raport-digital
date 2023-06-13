@@ -39,14 +39,20 @@ $countMapel = $stmtMapel->fetchColumn();
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3><?php echo $countSantri ?></h3>
-
-                <p>Total Santri</p>
+                <div class="row">
+                  <div class="col-lg-6 col-sm-1">
+                    <h3><?php echo $countSantri ?></h3>
+                    <p>Total Santri</p>
+                  </div>
+                  <div class="col-lg-6 col-sm-1">
+                    <i class="fa fa-users fa-4x mt-2 ml-5"></i>
+                  </div>
+                </div>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="?page=santriread" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -54,14 +60,20 @@ $countMapel = $stmtMapel->fetchColumn();
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3><?php echo $countGuru ?></h3>
-
-                <p>Total Guru</p>
+                <div class="row">
+                  <div class="col-lg-6 col-sm-1">
+                    <h3><?php echo $countGuru ?></h3>
+                    <p>Total Guru</p>
+                  </div>
+                  <div class="col-lg-6 col-sm-1">
+                    <i class="fa fa-user fa-4x mt-2 ml-5"></i>
+                  </div>
+                </div>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="?page=gururead" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -69,14 +81,20 @@ $countMapel = $stmtMapel->fetchColumn();
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3><?php echo $countMapel ?></h3>
-
-                <p>Total Mata Pelajaran</p>
+                <div class="row">
+                  <div class="col-lg-6 col-sm-1">
+                    <h3><?php echo $countMapel ?></h3>
+                    <p style="font-size: 15px;">Total Mata Pelajaran</p>                    
+                  </div>
+                  <div class="col-lg-6 col-sm-1">
+                    <i class="fa fa-book fa-4x mt-2 ml-5"></i>
+                  </div>
+                </div>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="?page=mapelread" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
