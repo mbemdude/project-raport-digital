@@ -40,12 +40,12 @@ $countMapel = $stmtMapel->fetchColumn();
             <div class="small-box bg-info">
               <div class="inner">
                 <div class="row">
-                  <div class="col-lg-6 col-sm-1">
+                  <div class="col-lg-6 col-sm-6">
+                    <i class="fa fa-users fa-4x mt-2 ml-5"></i>
+                  </div>
+                  <div class="col-lg-6 col-sm-6">
                     <h3><?php echo $countSantri ?></h3>
                     <p>Total Santri</p>
-                  </div>
-                  <div class="col-lg-6 col-sm-1">
-                    <i class="fa fa-users fa-4x mt-2 ml-5"></i>
                   </div>
                 </div>
               </div>
@@ -61,12 +61,12 @@ $countMapel = $stmtMapel->fetchColumn();
             <div class="small-box bg-success">
               <div class="inner">
                 <div class="row">
-                  <div class="col-lg-6 col-sm-1">
+                  <div class="col-lg-6 col-sm-6">
+                    <i class="fa fa-user fa-4x mt-2 ml-5"></i>
+                  </div>
+                  <div class="col-lg-6 col-sm-6">
                     <h3><?php echo $countGuru ?></h3>
                     <p>Total Guru</p>
-                  </div>
-                  <div class="col-lg-6 col-sm-1">
-                    <i class="fa fa-user fa-4x mt-2 ml-5"></i>
                   </div>
                 </div>
               </div>
@@ -82,12 +82,12 @@ $countMapel = $stmtMapel->fetchColumn();
             <div class="small-box bg-warning">
               <div class="inner">
                 <div class="row">
-                  <div class="col-lg-6 col-sm-1">
+                  <div class="col-lg-6 col-sm-6">
+                    <i class="fa fa-book fa-4x mt-2 ml-5"></i>
+                  </div>
+                  <div class="col-lg-6 col-sm-6">
                     <h3><?php echo $countMapel ?></h3>
                     <p style="font-size: 15px;">Total Mata Pelajaran</p>                    
-                  </div>
-                  <div class="col-lg-6 col-sm-1">
-                    <i class="fa fa-book fa-4x mt-2 ml-5"></i>
                   </div>
                 </div>
               </div>
