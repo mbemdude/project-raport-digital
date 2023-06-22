@@ -42,6 +42,18 @@ if (isset($_GET['page'])) {
         case 'mapeldelete':
             file_exists('pages/admin/mapeldelete.php') ? include 'pages/admin/mapeldelete.php' : include "pages/404.php";
             break;
+        case 'userread':
+            file_exists('pages/admin/userread.php') ? include 'pages/admin/userread.php' : include "pages/404.php";
+            break;
+        case 'usercreate':
+            file_exists('pages/admin/usercreate.php') ? include 'pages/admin/usercreate.php' : include "pages/404.php";
+            break;
+        case 'userupdate':
+            file_exists('pages/admin/userupdate.php') ? include 'pages/admin/userupdate.php' : include "pages/404.php";
+            break;
+        case 'userdelete':
+            file_exists('pages/admin/userdelete.php') ? include 'pages/admin/userdelete.php' : include "pages/404.php";
+            break;
         default:
             include 'pages/404.php';
     }
