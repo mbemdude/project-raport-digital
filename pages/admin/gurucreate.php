@@ -30,7 +30,7 @@ if (isset($_POST['button_create'])) {
             $_SESSION['hasil'] = false;
             $_SESSION['pesan'] = "Gagal simpan data";
         }
-        echo "<meta http-equiv='refresh' content='0;url=?page=mapelread'>";
+        echo "<meta http-equiv='refresh' content='0;url=?page=gururead'>";
     }
 }
 
@@ -45,7 +45,7 @@ if (isset($_POST['button_create'])) {
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="?page=home">Home</a></li>
-                    <li class="breadcrumb-item"><a href="?page=mapelread">Guru</a></li>
+                    <li class="breadcrumb-item"><a href="?page=gururead">Guru</a></li>
                     <li class="breadcrumb-item active">Tambah Data</li>
                 </ol>
             </div>

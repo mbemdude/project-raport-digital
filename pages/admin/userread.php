@@ -30,14 +30,14 @@
         ?>
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Data Guru</h1>
+                <h1 class="m-0">Data User</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item">
                         <a href="?page=home"> Home</a>
                     </li>
-                    <li class="breadcrumb-item">Data Guru</li>
+                    <li class="breadcrumb-item">Data User</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -47,8 +47,8 @@
 <div class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Data Guru</h3>
-            <a href="?page=gurucreate" class="btn btn-success btn-sm float-right">
+            <h3 class="card-title">Data User</h3>
+            <a href="?page=usercreate" class="btn btn-success btn-sm float-right">
             <i class="fa fa-plus-circle"></i> Tambah Data</a>
         </div>
         <div class="card-body">
@@ -87,10 +87,10 @@
                         <td><?php echo $row['username'] ?></td>
                         <td><?php echo $row['role'] ?></td>
                         <td>
-                            <a href="?page=mapelupdate&id=<?php echo $row['id']?>" class="btn btn-primary btn-sm">
+                            <a href="?page=userupdate&id=<?php echo $row['id']?>" class="btn btn-primary btn-sm">
                             <i class="fa fa-edit"> Ubah</i>
                             </a>
-                            <a href="?page=mapeldelete&id=<?php echo $row['id']?>" class="btn btn-danger btn-sm">
+                            <a href="?page=userdelete&id=<?php echo $row['id']?>" class="btn btn-danger btn-sm">
                             <i class="fa fa-trash"> Hapus</i>
                             </a>
                         </td>

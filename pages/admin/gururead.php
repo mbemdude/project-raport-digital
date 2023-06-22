@@ -90,10 +90,10 @@
                         <td><?php echo $row['nama'] ?></td>
                         <td><?php echo $row['mapel_id'] ?></td>
                         <td>
-                            <a href="?page=mapelupdate&id=<?php echo $row['id']?>" class="btn btn-primary btn-sm">
+                            <a href="?page=guruupdate&id=<?php echo $row['id']?>" class="btn btn-primary btn-sm">
                             <i class="fa fa-edit"> Ubah</i>
                             </a>
-                            <a href="?page=mapeldelete&id=<?php echo $row['id']?>" class="btn btn-danger btn-sm">
+                            <a href="?page=gurudelete&id=<?php echo $row['id']?>" class="btn btn-danger btn-sm">
                             <i class="fa fa-trash"> Hapus</i>
                             </a>
                         </td>
