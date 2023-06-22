@@ -4,27 +4,27 @@ if (isset($_POST['button_create'])) {
     $database = new Database();
     $db = $database->getConnection();
 
-    $insertSql = "INSERT INTO tb_santri (nis, nisn, nama_santri, kelas_id) VALUES (?, ?, ?, ?)";
-    $stmt = $db->prepare($insertSql);
-    $stmt->bindParam(1, $_POST['nis']);
-    $stmt->bindParam(2, $_POST['nisn']);
-    $stmt->bindParam(3, $_POST['nama_santri']);
-    $stmt->bindParam(4, $_POST['kelas_id']);
-    if ($stmt->rowCount() > 0) {
-?>
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-        <h5><i class="icon fa fa-ban"></i> Gagal</h5>
-        Nama santri sudah ada
-    </div>
-<?php
+    $validationSql = "SELECT * FROM tb_santri WHERE nis = :nis";
+    $stmtValidation = $db->prepare($validationSql);
+    $stmtValidation->bindParam(':nis', $_POST['nis']);
+    $stmtValidation->execute();
+
+    if ($stmtValidation->rowCount() > 0) {
+        ?>
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+            <h5><i class="icon fa fa-ban"></i> Gagal</h5>
+            NIS santri sudah ada
+        </div>
+        <?php
     } else {
-        $insertSql = "INSERT INTO tb_santri (nis, nisn, nama_santri, kelas_id) VALUE (?, ?, ?, ?)";
+        $insertSql = "INSERT INTO tb_santri (nis, nisn, nama_santri, kelas_id) VALUES (:nis, :nisn, :nama_santri, :kelas_id)";
         $stmt = $db->prepare($insertSql);
-        $stmt->bindParam(1, $_POST['nis']);
-        $stmt->bindParam(2, $_POST['nisn']);
-        $stmt->bindParam(3, $_POST['nama_santri']);
-        $stmt->bindParam(4, $_POST['kelas_id']);
+        $stmt->bindParam(':nis', $_POST['nis']);
+        $stmt->bindParam(':nisn', $_POST['nisn']);
+        $stmt->bindParam(':nama_santri', $_POST['nama_santri']);
+        $stmt->bindParam(':kelas_id', $_POST['kelas_id']);
+        
         if ($stmt->execute()) {
             $_SESSION['hasil'] = true;
             $_SESSION['pesan'] = "Berhasil simpan data";
@@ -32,10 +32,9 @@ if (isset($_POST['button_create'])) {
             $_SESSION['hasil'] = false;
             $_SESSION['pesan'] = "Gagal simpan data";
         }
-        echo "<meta http-equiv='refresh' content='0;url=?page=santriread'>";
+        echo "<meta http-equiv='refresh' content='0;url=?page=userread'>";
     }
 }
-
 ?>
 
 <section class="content-header">

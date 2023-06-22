@@ -4,23 +4,24 @@ if (isset($_POST['button_create'])) {
     $database = new Database();
     $db = $database->getConnection();
 
-    $insertSql = "INSERT INTO tb_mapel (kd_mapel, mapel) VALUES (?, ?)";
-    $stmt = $db->prepare($insertSql);
-    $stmt->bindParam(1, $_POST['kd_mapel']);
-    $stmt->bindParam(2, $_POST['mapel']);
-    if ($stmt->rowCount() > 0) {
-?>
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-        <h5><i class="icon fa fa-ban"></i> Gagal</h5>
-        Nama mapel sudah ada
-    </div>
-<?php
+    $validationSql = "SELECT * FROM tb_mapel WHERE mapel = :mapel";
+    $stmtValidation = $db->prepare($validationSql);
+    $stmtValidation->bindParam(':mapel', $_POST['mapel']);
+    $stmtValidation->execute();
+
+    if ($stmtValidation->rowCount() > 0) {
+        ?>
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+            <h5><i class="icon fa fa-ban"></i> Gagal</h5>
+            Mapel santri sudah ada
+        </div>
+        <?php
     } else {
-        $insertSql = "INSERT INTO tb_mapel (kd_mapel, mapel) VALUE (?, ?)";
+        $insertSql = "INSERT INTO tb_mapel (mapel) VALUES (:mapel)";
         $stmt = $db->prepare($insertSql);
-        $stmt->bindParam(1, $_POST['kd_mapel']);
-        $stmt->bindParam(2, $_POST['mapel']);
+        $stmt->bindParam(':mapel', $_POST['mapel']);
+        
         if ($stmt->execute()) {
             $_SESSION['hasil'] = true;
             $_SESSION['pesan'] = "Berhasil simpan data";
@@ -28,10 +29,9 @@ if (isset($_POST['button_create'])) {
             $_SESSION['hasil'] = false;
             $_SESSION['pesan'] = "Gagal simpan data";
         }
-        echo "<meta http-equiv='refresh' content='0;url=?page=mapelread'>";
+        echo "<meta http-equiv='refresh' content='0;url=?page=userread'>";
     }
 }
-
 ?>
 
 <section class="content-header">
@@ -59,8 +59,6 @@ if (isset($_POST['button_create'])) {
         <div class="card-body">
             <form method="POST">
                 <div class="form-group">
-                    <label for="kd_mapel">Kode Mapel</label>
-                    <input type="text" class="form-control" name="kd_mapel">
                     <label for="mapel">Mata Pelajaran</label>
                     <input type="text" class="form-control" name="mapel">
                 </div>

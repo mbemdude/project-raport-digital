@@ -76,7 +76,7 @@
                     $database = new Database();
                     $db = $database->getConnection();
 
-                    $selectSql = "SELECT tb_guru.nip, tb_guru.nama, tb_mapel.mapel FROM tb_guru INNER JOIN tb_mapel ON tb_guru.mapel_id = tb_mapel.id";
+                    $selectSql = "SELECT tb_guru.id, tb_guru.nip, tb_guru.nama, tb_mapel.mapel FROM tb_guru INNER JOIN tb_mapel ON tb_guru.mapel_id = tb_mapel.id";
 
                     $stmt = $db->prepare($selectSql);
                     $stmt->execute();

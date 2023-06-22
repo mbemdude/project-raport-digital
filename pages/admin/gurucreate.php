@@ -4,25 +4,26 @@ if (isset($_POST['button_create'])) {
     $database = new Database();
     $db = $database->getConnection();
 
-    $insertSql = "INSERT INTO tb_guru (nip, nama, mapel_id) VALUES (?, ?, ?)";
-    $stmt = $db->prepare($insertSql);
-    $stmt->bindParam(1, $_POST['nip']);
-    $stmt->bindParam(1, $_POST['nama']);
-    $stmt->bindParam(2, $_POST['mapel_id']);
-    if ($stmt->rowCount() > 0) {
-?>
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-        <h5><i class="icon fa fa-ban"></i> Gagal</h5>
-        Nama guru sudah ada
-    </div>
-<?php
+    $validationSql = "SELECT * FROM tb_guru WHERE nama = :nama";
+    $stmtValidation = $db->prepare($validationSql);
+    $stmtValidation->bindParam(':nama', $_POST['nama']);
+    $stmtValidation->execute();
+
+    if ($stmtValidation->rowCount() > 0) {
+        ?>
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+            <h5><i class="icon fa fa-ban"></i> Gagal</h5>
+            Nama guru sudah ada
+        </div>
+        <?php
     } else {
-        $insertSql = "INSERT INTO tb_guru (nip, nama, mapel_id) VALUES (?, ?, ?)";
+        $insertSql = "INSERT INTO tb_guru (nip, nama, mapel_id) VALUES (:nip, :nama, :mapel_id)";
         $stmt = $db->prepare($insertSql);
-        $stmt->bindParam(1, $_POST['nip']);
-        $stmt->bindParam(1, $_POST['nama']);
-        $stmt->bindParam(2, $_POST['mapel_id']);
+        $stmt->bindParam(':nip', $_POST['nip']);
+        $stmt->bindParam(':nama', $_POST['nama']);
+        $stmt->bindParam(':mapel_id', $_POST['role_id']);
+        
         if ($stmt->execute()) {
             $_SESSION['hasil'] = true;
             $_SESSION['pesan'] = "Berhasil simpan data";
@@ -33,7 +34,6 @@ if (isset($_POST['button_create'])) {
         echo "<meta http-equiv='refresh' content='0;url=?page=gururead'>";
     }
 }
-
 ?>
 
 <section class="content-header">

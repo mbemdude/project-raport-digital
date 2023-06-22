@@ -4,25 +4,27 @@ if (isset($_POST['button_create'])) {
     $database = new Database();
     $db = $database->getConnection();
 
-    $insertSql = "INSERT INTO tb_user (username, password, role) VALUES (?, ?, ?)";
-    $stmt = $db->prepare($insertSql);
-    $stmt->bindParam(1, $_POST['username']);
-    $stmt->bindParam(1, $_POST['password']);
-    $stmt->bindParam(2, $_POST['role']);
-    if ($stmt->rowCount() > 0) {
-?>
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-        <h5><i class="icon fa fa-ban"></i> Gagal</h5>
-        Username sudah ada
-    </div>
-<?php
+    $validationSql = "SELECT * FROM tb_user WHERE username = :username";
+    $stmtValidation = $db->prepare($validationSql);
+    $stmtValidation->bindParam(':username', $_POST['username']);
+    $stmtValidation->execute();
+
+    if ($stmtValidation->rowCount() > 0) {
+        ?>
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+            <h5><i class="icon fa fa-ban"></i> Gagal</h5>
+            Username sudah ada
+        </div>
+        <?php
     } else {
-        $insertSql = "INSERT INTO tb_user (username, password, role) VALUES (?, ?, ?)";
+        $insertSql = "INSERT INTO tb_user (username, password, role_id) VALUES (:username, :password, :role_id)";
+        $hashedPassword = md5($_POST['password']);
         $stmt = $db->prepare($insertSql);
-        $stmt->bindParam(1, $_POST['username']);
-        $stmt->bindParam(1, $_POST['password']);
-        $stmt->bindParam(2, $_POST['role']);
+        $stmt->bindParam(':username', $_POST['username']);
+        $stmt->bindParam(':password', $hashedPassword);
+        $stmt->bindParam(':role_id', $_POST['role_id']);
+        
         if ($stmt->execute()) {
             $_SESSION['hasil'] = true;
             $_SESSION['pesan'] = "Berhasil simpan data";
@@ -30,10 +32,9 @@ if (isset($_POST['button_create'])) {
             $_SESSION['hasil'] = false;
             $_SESSION['pesan'] = "Gagal simpan data";
         }
-        echo "<meta http-equiv='refresh' content='0;url=?page=mapelread'>";
+        echo "<meta http-equiv='refresh' content='0;url=?page=userread'>";
     }
 }
-
 ?>
 
 <section class="content-header">
@@ -65,8 +66,8 @@ if (isset($_POST['button_create'])) {
                     <input type="text" class="form-control" name="username">
                     <label for="password">Password</label>
                     <input type="text" class="form-control" name="password">
-                    <label for="mapel_id">Role</label>
-                    <select name="mapel_id" class="form-control">
+                    <label for="role_id">Role</label>
+                    <select name="role_id" class="form-control">
                         <option value="">>-- Pilih Role --<</option>
                         <?php 
                         $database = new Database();

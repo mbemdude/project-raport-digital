@@ -56,7 +56,6 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kode Mapel</th>
                         <th>Mata Pelajaran</th>
                         <th>Opsi</th>
                     </tr>
@@ -64,7 +63,6 @@
                 <tfoot>
                     <tr>
                         <th>No</th>
-                        <th>Kode Mapel</th>
                         <th>Mata Pelajaran</th>
                         <th>Opsi</th>
                     </tr>
@@ -84,7 +82,6 @@
                     ?>
                     <tr>
                         <td><?php echo $no++ ?></td>
-                        <td><?php echo $row['kd_mapel'] ?></td>
                         <td><?php echo $row['mapel'] ?></td>
                         <td>
                             <a href="?page=mapelupdate&id=<?php echo $row['id']?>" class="btn btn-primary btn-sm">

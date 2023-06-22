@@ -16,5 +16,5 @@ if (isset($_GET['id'])) {
         $_SESSION['pesan'] = "Mata pelajaran gagal dihapus";
     }
 }
-echo "<meta http-equiv='refresh' content='0;url=?page=mapelread'>";
+echo "<meta http-equiv='refresh' content='0;url=?page=userread'>";
 ?>
