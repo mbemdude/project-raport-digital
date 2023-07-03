@@ -35,7 +35,7 @@ if (isset($_GET['id'])) {
                 $stmt->bindParam(':nis', $_POST['nis']);
                 $stmt->bindParam(':nisn', $_POST['nisn']);
                 $stmt->bindParam(':nama_santri', $_POST['nama_santri']);
-                $stmt->bindParam(4, $_POST['id']);
+                $stmt->bindParam(':id', $_POST['id']);
                 if ($stmt->execute()) {
                     $_SESSION['hasil'] = true;
                     $_SESSION['pesan'] = "Berhasil ubah data";
