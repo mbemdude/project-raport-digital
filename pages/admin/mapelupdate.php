@@ -5,9 +5,9 @@ if (isset($_GET['id'])) {
     $db = $database->getConnection();
 
     $id = $_GET['id'];
-    $findSql = "SELECT * FROM tb_mapel WHERE id = ?";
+    $findSql = "SELECT * FROM tb_mapel WHERE id = :id";
     $stmt = $db->prepare($findSql);
-    $stmt->bindParam(1, $_GET['id']);
+    $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
     $row = $stmt->fetch();
     if(isset($row['id'])) {
@@ -16,25 +16,24 @@ if (isset($_GET['id'])) {
             $database = new Database();
             $db = $database->getConnection();
 
-            $validateSql = "SELECT * FROM tb_mapel WHERE kd_mapel = ? AND id != ?";
+            $validateSql = "SELECT * FROM tb_mapel WHERE mapel = :mapel AND id != :id";
             $stmt = $db->prepare($validateSql);
-            $stmt->bindParam(1, $_POST['kd_mapel']);
-            $stmt->bindParam(2, $_POST['id']);
+            $stmt->bindParam(':mapel', $_POST['mapel']);
+            $stmt->bindParam(':id', $_POST['id']);
             $stmt->execute();
             if ($stmt->rowCount() > 0) {
 ?>
                 <div class="alert alert-danger alert-dimissible">
                     <button type="button" class="close" data-disimissible="alert" aria-hidden="true"></button>
                     <h5><i class="icon fa fa-ban"></i> Gagal</h5>
-                    Kode mapel sudah ada
+                    Mapel sudah ada
                 </div>
         <?php 
             } else {
-                $updateSql = "UPDATE tb_mapel SET kd_mapel = ?, mapel = ? WHERE id = ?";
+                $updateSql = "UPDATE tb_mapel SET mapel = :mapel WHERE id = :id";
                 $stmt = $db->prepare($updateSql);
-                $stmt->bindParam(1, $_POST['kd_mapel']);
-                $stmt->bindParam(2, $_POST['mapel']);
-                $stmt->bindParam(3, $_POST['id']);
+                $stmt->bindParam(':mapel', $_POST['mapel']);
+                $stmt->bindParam(':id', $_POST['id']);
                 if ($stmt->execute()) {
                     $_SESSION['hasil'] = true;
                     $_SESSION['pesan'] = "Berhasil ubah data";
@@ -74,7 +73,6 @@ if (isset($_GET['id'])) {
                 <div class="form-group">
                     <label for="kd_mapel">Kode Mapel</label>
                     <input type="hidden" class="form-control" name="id" value="<?php echo $row['id'] ?>">
-                    <input type="text" class="form-control" name="kd_mapel" value="<?php echo $row['kd_mapel'] ?>">
                     <label for="mapel">Mata Pelajaran</label>
                     <input type="text" class="form-control" name="mapel" value="<?php echo $row['mapel'] ?>">
                 </div>

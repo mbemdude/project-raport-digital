@@ -5,9 +5,9 @@ if (isset($_GET['id'])) {
     $db = $database->getConnection();
 
     $id = $_GET['id'];
-    $findSql = "SELECT * FROM tb_santri WHERE id = ?";
+    $findSql = "SELECT * FROM tb_santri WHERE id = :id";
     $stmt = $db->prepare($findSql);
-    $stmt->bindParam(1, $_GET['id']);
+    $stmt->bindParam(':id', $_GET['id']);
     $stmt->execute();
     $row = $stmt->fetch();
     if(isset($row['id'])) {
@@ -16,10 +16,10 @@ if (isset($_GET['id'])) {
             $database = new Database();
             $db = $database->getConnection();
 
-            $validateSql = "SELECT * FROM tb_santri WHERE nama_santri = ? AND id != ?";
+            $validateSql = "SELECT * FROM tb_santri WHERE nama_santri = :nama_santri AND id != :id";
             $stmt = $db->prepare($validateSql);
-            $stmt->bindParam(1, $_POST['nama_santri']);
-            $stmt->bindParam(2, $_POST['id']);
+            $stmt->bindParam('nama_santri', $_POST['nama_santri']);
+            $stmt->bindParam(':id', $_POST['id']);
             $stmt->execute();
             if ($stmt->rowCount() > 0) {
 ?>
@@ -30,12 +30,11 @@ if (isset($_GET['id'])) {
                 </div>
         <?php 
             } else {
-                $updateSql = "UPDATE tb_santri SET nis = ?, nisn = ?, nama_santri = ? WHERE id = ?";
+                $updateSql = "UPDATE tb_santri SET nis = :nis, nisn = :nisn, nama_santri = :nama_santri WHERE id = :id";
                 $stmt = $db->prepare($updateSql);
-                $stmt->bindParam(1, $_POST['nis']);
-                $stmt->bindParam(2, $_POST['nisn']);
-                $stmt->bindParam(3, $_POST['nama_santri']);
-                // $stmt->bindParam(4, $_POST['kelas_id']);
+                $stmt->bindParam(':nis', $_POST['nis']);
+                $stmt->bindParam(':nisn', $_POST['nisn']);
+                $stmt->bindParam(':nama_santri', $_POST['nama_santri']);
                 $stmt->bindParam(4, $_POST['id']);
                 if ($stmt->execute()) {
                     $_SESSION['hasil'] = true;

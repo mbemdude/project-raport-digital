@@ -5,9 +5,9 @@ if (isset($_GET['id'])) {
     $database = new Database();
     $db = $database->getConnection();
 
-    $deleteSql = "DELETE FROM tb_user WHERE id = ?";
+    $deleteSql = "DELETE FROM tb_user WHERE id = :id";
     $stmt = $db->prepare($deleteSql);
-    $stmt->bindParam(1, $_GET['id']);
+    $stmt->bindParam(':id', $_GET['id']);
     if($stmt->execute()) {
         $_SESSION['hasil'] = true;
         $_SESSION['pesan'] = "Mata pelajaran berhasil dihapus";

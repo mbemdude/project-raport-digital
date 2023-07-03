@@ -65,7 +65,7 @@ if (isset($_POST['button_create'])) {
                     <label for="username">Username</label>
                     <input type="text" class="form-control" name="username">
                     <label for="password">Password</label>
-                    <input type="text" class="form-control" name="password">
+                    <input type="password" class="form-control" name="password">
                     <label for="role_id">Role</label>
                     <select name="role_id" class="form-control">
                         <option value="">>-- Pilih Role --<</option>
