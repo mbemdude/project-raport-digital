@@ -54,6 +54,12 @@ if (isset($_GET['page'])) {
         case 'userdelete':
             file_exists('pages/admin/userdelete.php') ? include 'pages/admin/userdelete.php' : include "pages/404.php";
             break;
+        case 'semester1':
+            file_exists('pages/penilaian/semester1.php') ? include 'pages/penilaian/semester1.php' : include "pages/404.php";
+            break;
+        case 'semester2':
+            file_exists('pages/penilaian/semester2.php') ? include 'pages/penilaian/semester2.php' : include "pages/404.php";
+            break;
         default:
             include 'pages/404.php';
     }

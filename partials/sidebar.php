@@ -79,13 +79,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="?page=santriread" class="nav-link active">
+                <a href="?page=semester1" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Semester 1</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="?page=gururead" class="nav-link">
+                <a href="?page=semester2" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     Semester 2
