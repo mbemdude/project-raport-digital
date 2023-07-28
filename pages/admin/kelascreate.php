@@ -61,6 +61,22 @@ if (isset($_POST['button_create'])) {
                 <div class="form-group">
                     <label for="kelas">Kelas</label>
                     <input type="text" class="form-control" name="kelas">
+                    <label for="guru_id">Wali Kelas</label>
+                    <select name="guru_id">
+                        <option value="">>-- Pilih Wali Kelas --<</option>
+                        <?php 
+                        $database = new Database();
+                        $db = $database->getConnection();
+    
+                        $selectSql = "SELECT * FROM tb_guru";
+                        $stmt_guru = $db->prepare($selectSql);
+                        $stmt_guru->execute();
+                        
+                        while($row_kelas = $stmt_guru->fetch(PDO::FETCH_ASSOC)) {
+                            echo "<option value=\"" . $row_kelas['id'] .   "\">" . $row_kelas['guru'] . "</option>";
+                        }
+                        ?>
+                    </select>
                 </div>
                 <a href="?page=kelasread" class="btn btn-danger btn-sm float-right">
                     <i class="fa fa-times"></i> Batal

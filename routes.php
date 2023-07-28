@@ -42,6 +42,18 @@ if (isset($_GET['page'])) {
         case 'mapeldelete':
             file_exists('pages/admin/mapeldelete.php') ? include 'pages/admin/mapeldelete.php' : include "pages/404.php";
             break;
+        case 'kelasread':
+            file_exists('pages/admin/kelasread.php') ? include 'pages/admin/kelasread.php' : include "pages/404.php";
+            break;
+        case 'kelascreate':
+            file_exists('pages/admin/kelascreate.php') ? include 'pages/admin/kelascreate.php' : include "pages/404.php";
+            break;
+        case 'kelasupdate':
+            file_exists('pages/admin/kelasupdate.php') ? include 'pages/admin/kelasupdate.php' : include "pages/404.php";
+            break;
+        case 'kelasdelete':
+            file_exists('pages/admin/kelasdelete.php') ? include 'pages/admin/kelasdelete.php' : include "pages/404.php";
+            break;
         case 'userread':
             file_exists('pages/admin/userread.php') ? include 'pages/admin/userread.php' : include "pages/404.php";
             break;

@@ -48,7 +48,7 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Data Guru</h3>
-            <a href="?page=gurucreate" class="btn btn-success btn-sm float-right">
+            <a href="?page=kelascreate" class="btn btn-success btn-sm float-right">
             <i class="fa fa-plus-circle"></i> Tambah Data</a>
         </div>
         <div class="card-body">
@@ -64,6 +64,7 @@
                     <tr>
                         <th>No</th>
                         <th>Kelas</th>
+                        <th>Wali Kelas</th>
                         <th>Opsi</th>
                     </tr>
                 </tfoot>
@@ -84,6 +85,7 @@
                         <td><?php echo $no++ ?></td>
                         <td><?php echo $row['nip'] ?></td>
                         <td><?php echo $row['kelas'] ?></td>
+                        <td><?php echo $row['guru_id'] ?></td>
                         <td>
                             <a href="?page=guruupdate&id=<?php echo $row['id']?>" class="btn btn-primary btn-sm">
                             <i class="fa fa-edit"> Ubah</i>
