@@ -30,9 +30,10 @@ if (isset($_GET['id'])) {
                 </div>
         <?php 
             } else {
-                $updateSql = "UPDATE tb_kelas SET nip = :nip WHERE id = :id";
+                $updateSql = "UPDATE tb_kelas SET id_guru = :id_guru, kelas = :kelas WHERE id = :id";
                 $stmt = $db->prepare($updateSql);
                 $stmt->bindParam(':kelas', $_POST['kelas']);
+                $stmt->bindParam(':id_guru', $_POST['id_guru']);
                 $stmt->bindParam(':id', $_POST['id']);
                 if ($stmt->execute()) {
                     $_SESSION['hasil'] = true;
@@ -71,10 +72,27 @@ if (isset($_GET['id'])) {
         <div class="card-body">
             <form method="POST">
                 <div class="form-group">
-                    <label for="nip">NIP</label>
+                    <label for="id">Id</label>
                     <input type="hidden" class="form-control" name="id" value="<?php echo $row['id'] ?>">
                     <label for="kelas">Kelas</label>
                     <input type="text" class="form-control" name="kelas" value="<?php echo $row['kelas'] ?>">
+                    <label for="id_guru">Guru</label>
+                    <select name="id_guru" class="form-control">
+                        <option value="">>-- Wali Kelas --<</option>
+                        <?php 
+                        $database = new Database();
+                        $db = $database->getConnection();
+    
+                        $selectSql = "SELECT * FROM tb_guru";
+                        $stmt_kelas = $db->prepare($selectSql);
+                        $stmt_kelas->execute();
+                        
+                        while($row_guru = $stmt_kelas->fetch(PDO::FETCH_ASSOC)) {
+                            $selected = ($row_guru['id'] == $row['id_guru']) ? 'selected' : '';
+                            echo "<option value=\"" . $row_guru['id'] . "\" $selected>" . $row_guru['nama'] . "</option>";
+                        } 
+                        ?>
+                    </select>
                 </div>
                 <a href="?page=kelasread" class="btn btn-danger btn-sm float-right">
                     <i class="fa fa-times"></i> Batal

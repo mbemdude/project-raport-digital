@@ -60,6 +60,7 @@
                         <th>NISN</th>
                         <th>Nama</th>
                         <th>Kelas</th>
+                        <th>Jenis Kelamin</th>
                         <th>Opsi</th>
                     </tr>
                 </thead>
@@ -69,6 +70,7 @@
                         <th>NIS</th>
                         <th>NISN</th>
                         <th>Nama</th>
+                        <th>Jenis Kelamin</th>
                         <th>Kelas</th>
                         <th>Opsi</th>
                     </tr>
@@ -78,7 +80,7 @@
                     $database = new Database();
                     $db = $database->getConnection();
 
-                    $selectSql = "SELECT tb_santri.id, tb_santri.nis, tb_santri.nisn, tb_santri.nama_santri, tb_kelas.kelas FROM tb_santri INNER JOIN tb_kelas ON tb_santri.kelas_id = tb_kelas.id;";
+                    $selectSql = "SELECT tb_santri.id, tb_santri.nis, tb_santri.nisn, tb_santri.nama_santri, tb_santri.jenis_kelamin, tb_kelas.kelas FROM tb_santri INNER JOIN tb_kelas ON tb_santri.kelas_id = tb_kelas.id;";
 
                     $stmt = $db->prepare($selectSql);
                     $stmt->execute();
@@ -91,6 +93,7 @@
                         <td><?php echo $row['nis'] ?></td>
                         <td><?php echo $row['nisn'] ?></td>
                         <td><?php echo $row['nama_santri'] ?></td>
+                        <td><?php echo $row['jenis_kelamin'] ?></td>
                         <td><?php echo $row['kelas'] ?></td>
                         <td>
                             <a href="?page=santriupdate&id=<?php echo $row['id']?>" class="btn btn-primary btn-sm">

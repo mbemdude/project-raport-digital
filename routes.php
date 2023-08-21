@@ -72,6 +72,18 @@ if (isset($_GET['page'])) {
         case 'semester2':
             file_exists('pages/penilaian/semester2.php') ? include 'pages/penilaian/semester2.php' : include "pages/404.php";
             break;
+        case 'uts1':
+            file_exists('pages/penilaian/uts1.php') ? include 'pages/penilaian/uts1.php' : include "pages/404.php";
+            break;
+        case 'uts2':
+            file_exists('pages/penilaian/uts2.php') ? include 'pages/penilaian/uts2.php' : include "pages/404.php";
+            break;
+        case 'uas1':
+            file_exists('pages/penilaian/uas1.php') ? include 'pages/penilaian/uas1.php' : include "pages/404.php";
+            break;
+        case 'uas2':
+            file_exists('pages/penilaian/uas2.php') ? include 'pages/penilaian/uas2.php' : include "pages/404.php";
+            break;
         default:
             include 'pages/404.php';
     }

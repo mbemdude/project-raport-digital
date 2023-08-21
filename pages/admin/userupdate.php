@@ -26,11 +26,12 @@ if (isset($_GET['id'])) {
                         Username sudah ada
                     </div>';
             } else {
-                $updateSql = "UPDATE tb_user SET username = :username, password = :password WHERE id = :id";
+                $updateSql = "UPDATE tb_user SET username = :username, password = :password, role_id := role_id WHERE id = :id";
                 $stmtUpdate = $db->prepare($updateSql); // Changed variable name to $stmtUpdate
                 $hashedPassword = md5($_POST['password']);
                 $stmtUpdate->bindParam(':username', $_POST['username']);
                 $stmtUpdate->bindParam(':password', $hashedPassword);
+                $stmtUpdate->bindParam(':role_id', $_POST['role_id']);
                 $stmtUpdate->bindParam(':id', $_POST['id']);
 
                 if ($stmtUpdate->execute()) {
@@ -76,6 +77,23 @@ if (isset($_GET['id'])) {
                     <input type="text" class="form-control" name="username" value="<?php echo $row['username'] ?>">
                     <label for="password">Password</label>
                     <input type="password" class="form-control" name="password" value="">
+                    <label for="id_role">Role</label>
+                    <select name="id_role" class="form-control">
+                        <option value="">>-- Role --<</option>
+                        <?php 
+                        $database = new Database();
+                        $db = $database->getConnection();
+    
+                        $selectSql = "SELECT * FROM tb_role";
+                        $stmt_user = $db->prepare($selectSql);
+                        $stmt_user->execute();
+                        
+                        while($row_role = $stmt_user->fetch(PDO::FETCH_ASSOC)) {
+                            $selected = ($row_role['id'] == $row['role_id']) ? 'selected' : '';
+                            echo "<option value=\"" . $row_role['id'] . "\" $selected>" . $row_role['role'] . "</option>";
+                        } 
+                        ?>
+                    </select>
                 </div>
                 <a href="?page=userread" class="btn btn-danger btn-sm float-right">
                     <i class="fa fa-times"></i> Batal

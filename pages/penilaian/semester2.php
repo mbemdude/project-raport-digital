@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Semester 2</title>
-</head>
-<body>
-    <h1>Hello World</h1>
-</body>
-</html>
+<div class="content">
+    <h1>Semester 2</h1>
+    <div class="card">
+        <div class="card-body">
+            <a href="?page=uts2" class="btn btn-primary">Ulangan Tengah Semester</a>
+            <a href="?page=uas2" class="btn btn-primary">Ulangan Akhir Semester</a>
+        </div>
+    </div>
+</div>

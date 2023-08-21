@@ -76,7 +76,7 @@
                     $database = new Database();
                     $db = $database->getConnection();
 
-                    $selectSql = "SELECT tb_guru.id, tb_guru.nip, tb_guru.nama, tb_mapel.mapel FROM tb_guru INNER JOIN tb_mapel ON tb_guru.mapel_id = tb_mapel.id";
+                    $selectSql = "SELECT tb_guru.id, tb_guru.nip, tb_guru.nama, tb_mapel.mapel FROM tb_guru INNER JOIN tb_mapel ON tb_guru.id_mapel = tb_mapel.id";
 
                     $stmt = $db->prepare($selectSql);
                     $stmt->execute();
@@ -88,7 +88,7 @@
                         <td><?php echo $no++ ?></td>
                         <td><?php echo $row['nip'] ?></td>
                         <td><?php echo $row['nama'] ?></td>
-                        <td><?php echo $row['mapel_id'] ?></td>
+                        <td><?php echo $row['mapel'] ?></td>
                         <td>
                             <a href="?page=guruupdate&id=<?php echo $row['id']?>" class="btn btn-primary btn-sm">
                             <i class="fa fa-edit"> Ubah</i>

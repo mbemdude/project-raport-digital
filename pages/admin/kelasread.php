@@ -30,14 +30,14 @@
         ?>
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0">Data Guru</h1>
+                <h1 class="m-0">Data Kelas</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item">
                         <a href="?page=home"> Home</a>
                     </li>
-                    <li class="breadcrumb-item">Data Guru</li>
+                    <li class="breadcrumb-item">Data Kelas</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -47,7 +47,7 @@
 <div class="content">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Data Guru</h3>
+            <h3 class="card-title">Data Kelas</h3>
             <a href="?page=kelascreate" class="btn btn-success btn-sm float-right">
             <i class="fa fa-plus-circle"></i> Tambah Data</a>
         </div>
@@ -57,6 +57,7 @@
                     <tr>
                         <th>No</th>
                         <th>Kelas</th>
+                        <th>Wali Kelas</th>
                         <th>Opsi</th>
                     </tr>
                 </thead>
@@ -73,7 +74,7 @@
                     $database = new Database();
                     $db = $database->getConnection();
 
-                    $selectSql = "SELECT * FROM tb_kelas";
+                    $selectSql = "SELECT tb_kelas.id, tb_kelas.kelas, tb_guru.nama FROM tb_kelas INNER JOIN tb_guru ON tb_kelas.id_guru = tb_guru.id;";
 
                     $stmt = $db->prepare($selectSql);
                     $stmt->execute();
@@ -83,14 +84,13 @@
                     ?>
                     <tr>
                         <td><?php echo $no++ ?></td>
-                        <td><?php echo $row['nip'] ?></td>
                         <td><?php echo $row['kelas'] ?></td>
-                        <td><?php echo $row['guru_id'] ?></td>
+                        <td><?php echo $row['nama'] ?></td>
                         <td>
-                            <a href="?page=guruupdate&id=<?php echo $row['id']?>" class="btn btn-primary btn-sm">
+                            <a href="?page=kelasupdate&id=<?php echo $row['id']?>" class="btn btn-primary btn-sm">
                             <i class="fa fa-edit"> Ubah</i>
                             </a>
-                            <a href="?page=gurudelete&id=<?php echo $row['id']?>" class="btn btn-danger btn-sm">
+                            <a href="?page=kelasdelete&id=<?php echo $row['id']?>" class="btn btn-danger btn-sm">
                             <i class="fa fa-trash"> Hapus</i>
                             </a>
                         </td>

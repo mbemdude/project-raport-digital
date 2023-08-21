@@ -30,11 +30,12 @@ if (isset($_GET['id'])) {
                 </div>
         <?php 
             } else {
-                $updateSql = "UPDATE tb_santri SET nis = :nis, nisn = :nisn, nama_santri = :nama_santri WHERE id = :id";
+                $updateSql = "UPDATE tb_santri SET nis = :nis, nisn = :nisn, nama_santri = :nama_santri, jenis_kelamin = :jenis_kelamin WHERE id = :id";
                 $stmt = $db->prepare($updateSql);
                 $stmt->bindParam(':nis', $_POST['nis']);
                 $stmt->bindParam(':nisn', $_POST['nisn']);
                 $stmt->bindParam(':nama_santri', $_POST['nama_santri']);
+                $stmt->bindParam(':jenis_kelamin', $_POST['jenis_kelamin']);
                 $stmt->bindParam(':id', $_POST['id']);
                 if ($stmt->execute()) {
                     $_SESSION['hasil'] = true;
@@ -50,8 +51,7 @@ if (isset($_GET['id'])) {
 
 <section class="content-header">
     <div class="container-fluid">
-        <div class="row mb2">
-            <div class="col-sm-6">
+        <div class="row mb2">            <div class="col-sm-6">
                 <h1>Ubah Data Santri</h1>
             </div>
             <div class="col-sm-6">
@@ -80,22 +80,29 @@ if (isset($_GET['id'])) {
                     <input type="text" class="form-control" name="nisn" value="<?php echo $row['nisn'] ?>">
                     <label for="nama_santri">Nama Santri</label>
                     <input type="text" class="form-control" name="nama_santri" value="<?php echo $row['nama_santri'] ?>">
-                    <!-- <label for="kelas_id">Kelas</label>
-                    <select name="kelas_id" id="" class="form-control">
+                    <label for="jenis_kelamin">Jenis Kelamin</label>
+                    <select name="jenis_kelamin" class="form-control">
+                        <option value="">>-- Jenis Kelamin --<</option>
+                        <option value="L" <?php if ($row['jenis_kelamin'] === 'L') echo 'selected'; ?>>Laki-Laki</option>
+                        <option value="P" <?php if ($row['jenis_kelamin'] === 'P') echo 'selected'; ?>>Perempuan</option>
+                    </select>
+                    <label for="kelas_id">Kelas</label>
+                    <select name="kelas_id" class="form-control">
                         <option value="">>-- Kelas --<</option>
                         <?php 
                         $database = new Database();
                         $db = $database->getConnection();
     
                         $selectSql = "SELECT * FROM tb_kelas";
-                        $stmt_santri = $db->prepare($selectSql);
-                        $stmt_santri->execute();
-                                                                                                   
-                        while($row_santri = $stmt_santri->fetch(PDO::FETCH_ASSOC)) {
-                            echo "<option value=\"" . $row_santri['Kelas_id'] .   "\">" . $row_santri['kelas'] . "</option>";
+                        $stmt_kelas = $db->prepare($selectSql);
+                        $stmt_kelas->execute();
+                        
+                        while($row_kelas = $stmt_kelas->fetch(PDO::FETCH_ASSOC)) {
+                            $selected = ($row_kelas['id'] == $row['kelas_id']) ? 'selected' : '';
+                            echo "<option value=\"" . $row_kelas['id'] . "\" $selected>" . $row_kelas['kelas'] . "</option>";
                         } 
                         ?>
-                    </select> -->
+                    </select>
                 </div>
                 <a href="?page=santriread" class="btn btn-danger btn-sm float-right">
                     <i class="fa fa-times"></i> Batal
@@ -107,6 +114,7 @@ if (isset($_GET['id'])) {
         </div>
     </div>
 </section>
+
 <?php 
     } else {
         echo "<meta http-equiv='refresh' content='0;url=?page=santriread'>";

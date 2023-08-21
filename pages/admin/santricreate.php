@@ -18,11 +18,12 @@ if (isset($_POST['button_create'])) {
         </div>
         <?php
     } else {
-        $insertSql = "INSERT INTO tb_santri (nis, nisn, nama_santri, kelas_id) VALUES (:nis, :nisn, :nama_santri, :kelas_id)";
+        $insertSql = "INSERT INTO tb_santri (nis, nisn, nama_santri, jenis_kelamin, kelas_id) VALUES (:nis, :nisn, :nama_santri, :jenis_kelamin, :kelas_id)";
         $stmt = $db->prepare($insertSql);
         $stmt->bindParam(':nis', $_POST['nis']);
         $stmt->bindParam(':nisn', $_POST['nisn']);
         $stmt->bindParam(':nama_santri', $_POST['nama_santri']);
+        $stmt->bindParam(':jenis_kelamin', $_POST['jenis_kelamin']);
         $stmt->bindParam(':kelas_id', $_POST['kelas_id']);
         
         if ($stmt->execute()) {
@@ -68,6 +69,12 @@ if (isset($_POST['button_create'])) {
                     <input type="text" class="form-control" name="nisn">
                     <label for="nama_santri">Nama Santri</label>
                     <input type="text" class="form-control" name="nama_santri">
+                    <label for="jenis_kelamin">Jenis Kelamin</label>
+                    <select name="jenis_kelamin" id="" class="form-control">
+                        <option value="">-- Jenis Kelamin --</option>
+                        <option value="L">Laki-Laki</option>
+                        <option value="P">Perempuan</option>
+                    </select>
                     <label for="kelas_id">Kelas</label>
                     <select name="kelas_id" id="" class="form-control">
                         <option value="">>-- Kelas --<</option>
