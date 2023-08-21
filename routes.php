@@ -75,14 +75,50 @@ if (isset($_GET['page'])) {
         case 'uts1':
             file_exists('pages/penilaian/uts1.php') ? include 'pages/penilaian/uts1.php' : include "pages/404.php";
             break;
+        case 'uts1-7':
+            file_exists('pages/penilaian/uts1_7.php') ? include 'pages/penilaian/uts1_7.php' : include "pages/404.php";
+            break;
+        case 'uts1-8':
+            file_exists('pages/penilaian/uts1_8.php') ? include 'pages/penilaian/uts1_8.php' : include "pages/404.php";
+            break;
+        case 'uts1-9':
+            file_exists('pages/penilaian/uts1_9.php') ? include 'pages/penilaian/uts1_9.php' : include "pages/404.php";
+            break;
         case 'uts2':
             file_exists('pages/penilaian/uts2.php') ? include 'pages/penilaian/uts2.php' : include "pages/404.php";
+            break;
+        case 'uts2-7':
+            file_exists('pages/penilaian/uts2_7.php') ? include 'pages/penilaian/uts2_7.php' : include "pages/404.php";
+            break;
+        case 'uts2-8':
+            file_exists('pages/penilaian/uts2_8.php') ? include 'pages/penilaian/uts2_8.php' : include "pages/404.php";
+            break;
+        case 'uts2-9':
+            file_exists('pages/penilaian/uts2_9.php') ? include 'pages/penilaian/uts2_9.php' : include "pages/404.php";
             break;
         case 'uas1':
             file_exists('pages/penilaian/uas1.php') ? include 'pages/penilaian/uas1.php' : include "pages/404.php";
             break;
+        case 'uas1-7':
+            file_exists('pages/penilaian/uas1_7.php') ? include 'pages/penilaian/uas1_7.php' : include "pages/404.php";
+            break;
+        case 'uas1-8':
+            file_exists('pages/penilaian/uas1_8.php') ? include 'pages/penilaian/uas1_8.php' : include "pages/404.php";
+            break;
+        case 'uas1-9':
+            file_exists('pages/penilaian/uas1_9.php') ? include 'pages/penilaian/uas1_9.php' : include "pages/404.php";
+            break;
         case 'uas2':
             file_exists('pages/penilaian/uas2.php') ? include 'pages/penilaian/uas2.php' : include "pages/404.php";
+            break;
+        case 'uas2-7':
+            file_exists('pages/penilaian/uas2_7.php') ? include 'pages/penilaian/uas2_7.php' : include "pages/404.php";
+            break;
+        case 'uas2-8':
+            file_exists('pages/penilaian/uas2_8.php') ? include 'pages/penilaian/uas2_8.php' : include "pages/404.php";
+            break;
+        case 'uas2-9':
+            file_exists('pages/penilaian/uas2_9.php') ? include 'pages/penilaian/uas2_9.php' : include "pages/404.php";
             break;
         default:
             include 'pages/404.php';
