@@ -74,7 +74,7 @@
                     $database = new Database();
                     $db = $database->getConnection();
 
-                    $selectSql = "SELECT tb_user.id, tb_user.username, tb_role.role FROM tb_user INNER JOIN tb_role ON tb_user.role_id = tb_role.id";
+                    $selectSql = "SELECT tb_user.id, tb_user.username, tb_role.role FROM tb_user INNER JOIN tb_role ON tb_user.id_role = tb_role.id";
 
                     $stmt = $db->prepare($selectSql);
                     $stmt->execute();

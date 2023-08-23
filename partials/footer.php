@@ -4,5 +4,5 @@
       <b>Version</b> 0.1.0
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2023 <a href="#">Praktikum Web</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2023 <a href="#">PIAT 8 Martapura</a>.</strong> All rights reserved.
   </footer>

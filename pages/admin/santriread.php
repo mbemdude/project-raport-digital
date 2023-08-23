@@ -80,7 +80,7 @@
                     $database = new Database();
                     $db = $database->getConnection();
 
-                    $selectSql = "SELECT tb_santri.id, tb_santri.nis, tb_santri.nisn, tb_santri.nama_santri, tb_santri.jenis_kelamin, tb_kelas.kelas FROM tb_santri INNER JOIN tb_kelas ON tb_santri.kelas_id = tb_kelas.id;";
+                    $selectSql = "SELECT tb_santri.id, tb_santri.nis, tb_santri.nisn, tb_santri.nama_santri, tb_santri.jenis_kelamin, tb_kelas.kelas FROM tb_santri INNER JOIN tb_kelas ON tb_santri.id_kelas = tb_kelas.id;";
 
                     $stmt = $db->prepare($selectSql);
                     $stmt->execute();
